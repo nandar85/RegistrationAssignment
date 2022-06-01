@@ -1,0 +1,100 @@
+﻿@page
+@model RegistrationAssignmentWeb.Pages.RegisterUsers.CreateModel
+@{
+}
+@section Scripts
+{
+<script>
+    var date = new Date();
+    date.setDate(date.getDate());
+
+    $('#RegisterUser_RegisterDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        minDate: '01/01/2023',
+		maxDate:'30/06/2023',
+		
+    });
+   
+</script>
+@*@{
+	<partial name="_ValidationScriptsPartial" />
+	}*@
+}
+<form method="post">
+	<div class="border p-3 px-5 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary pl-3">Create User</h2>
+            <hr />
+		</div>
+	@*	<div asp-validation-summary="All"></div>*@
+		<div class="row mb-3">
+			<div class="col-6"><label asp-for="RegisterUser.Name"></label></div>			
+			<div class="col-6"><input asp-for="RegisterUser.Name" class="form-control" />
+				<span asp-validation-for="RegisterUser.Name" class="text-danger"></span>
+				</div>			
+			
+		</div>
+		<div class="row mb-3">
+			<div class="col-6"><label asp-for="RegisterUser.Email"></label></div>
+			<div class="col-6"><input asp-for="RegisterUser.Email" class="form-control" />
+				<span asp-validation-for="RegisterUser.Email" class="text-danger"></span>
+				</div>
+			
+		</div>
+		<div class="row mb-3">
+			<div class="col-6"><label asp-for="RegisterUser.Gender"></label></div>
+			<div class="col-6">
+			<div class="col-sm-10">
+            <div class="mt-2">
+                <div>
+                    <input asp-for="RegisterUser.Gender" type="radio" value="M" checked />
+                    <label  asp-for="RegisterUser.Gender">Male</label>
+					 <input asp-for="RegisterUser.Gender" type="radio" value="F" />
+                    <label  asp-for="RegisterUser.Gender">Female</label>
+                </div>              
+            </div>
+			</div>
+        </div>
+		</div>
+		<div class="row mb-3">
+			<div class="col-6"><label asp-for="RegisterUser.RegisterDate"></label></div>
+			<div class="col-6"><input asp-for="RegisterUser.RegisterDate" class="form-control" type="text" readonly/>
+				<span asp-validation-for="RegisterUser.RegisterDate" class="text-danger"></span>
+			</div>
+			
+		</div>
+			<div class="row mb-3">
+				<div class="col-6"><label asp-for="RegisterUser.EventDays"></label></div>
+				<div class="col-6">
+					<div class="col-sm-10">
+						 <div class="mt-2">
+				<input id="Day1" type="checkbox" name="RegisterUser.EventDays" value="Day 1" />
+				<label for="Day1">Day 1</label>
+                <input id="Day2" type="checkbox" name="RegisterUser.EventDays" value="Day 2" />
+                <label for="Day2">Day 2</label>  
+				<input id="Day3" type="checkbox" name="RegisterUser.EventDays" value="Day 3" />
+                <label for="Day3">Day 3</label>
+							 </div>
+							 <span asp-validation-for="RegisterUser.EventDays" class="text-danger"></span>
+						</div>						
+				</div>	
+			</div>
+		<div class="row mb-3">
+			<div class="col-6"><label asp-for="RegisterUser.InterestArea"></label></div>
+			<div class="col-6">
+			<select asp-for="RegisterUser.InterestArea" asp-items="@Model.CategoryList" class="form-select">				
+			</select>	
+			</div>
+	</div>
+		<div class="row mb-3">
+			<div class="col-6"><label asp-for="RegisterUser.AdditionalRequest"></label></div>
+			<div class="col-6"><textarea asp-for="RegisterUser.AdditionalRequest" class="form-control"></textarea></div>
+		</div>
+		<div class="col-12 text-end">
+			<button type="submit" class="btn btn-primary" style="width:150px;">Submit</button>
+		</div>
+		
+       
+	</div>
+	
+</form>
